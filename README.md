@@ -30,7 +30,8 @@ somobench/
 │   └── run_baselines.py
 ├── README.md
 └── requirements.txt
+```
 
-# Citations
+## Citations
 If you use SoMoBench in your research, we would appreciate a citation to the appropriate paper(s):
 
