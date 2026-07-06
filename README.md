@@ -2,29 +2,35 @@
 
 
 # SoMoBench
-Observation-based benchmark dataset for soil moisture modeling with machine learning
 
-# What is SoMoBench
-Benchmark datasets in the area of machine learning (ML) aim to provide curated data that represent real-world problems, allowing the performance of different ML algorithms to be quantitatively evaluated and compared. Here we introduce a benchmark dataset ‘SoMoBench’ for soil moisture modeling using machine learning. In recent years, ML methods have been actively applied to simulate soil moisture dynamics, however, they are difficult to compare due to inconsistencies among the studies, including different data sources, preprocessing, and spatiotemporal scales. To overcome this issue, we aggregate and standardise existing global in-situ soil moisture data at the daily scale and 0.25° spatial resolution, and provide the data with meteorological forcing and statistic features at corresponding grid pixels. 
+SoMoBench is a benchmark dataset for data-driven soil moisture modelling with targets derived from in situ observations.
+
+## What is SoMoBench?
+
+SoMoBench provides daily soil moisture target time series and collocated meteorological forcing data for machine-learning applications. The dataset is designed to support reproducible benchmarking and model intercomparison for soil moisture modelling.
+
+The target data are derived from in situ soil moisture observations from the International Soil Moisture Network (ISMN) and the CEMADEN network in Brazil. The observations are harmonized to a common 0.25° grid and provided for three nominal soil layers: 0–10, 10–30, and 30–50 cm. The dataset also includes daily ERA5 meteorological forcing time series and grid-cell metadata.
 
 
-# About this repository
+## About this repository
 
-  - scripts/somobench.py: python script to directly use SomoBench data
-    - one year has three .netcdf files; 1) meteorological forcing data, 2) static features, and 3) upscaled soil moisture
-     
-  - scripts/pre_soilm.py: python script to prepare SomoBench data at a grid pixel using ISMN raw data
-    - download soil moisture data from [https://www.ismn.](https://ismn.earth) (log-in required) > DATA ACCESS
-    - data can be extracted using ISMN github ()
-    - see the example files in .
-      
-  - scripts
-    - down_era5.py: to download daily ERA5 data using the CDS API service.
-    - extract_era5.py: to extract meteorological forcing data from ERA5 at given grid pixels
-    - extract_statics.py: to extract static features at given grid pixels
-  
+This repository provides code associated with the SoMoBench dataset and paper.
+
+The current release includes:
+
+- scripts to reproduce the figures presented in the SoMoBench paper
+- scripts to run the illustrative baseline modelling experiments
+
+Additional processing scripts for constructing the target dataset from raw input data may be added in future updates.
+
+```text
+somobench/
+├── paper/
+│   ├── reproduce_figures.py
+│   └── run_baselines.py
+├── README.md
+└── requirements.txt
+
 # Citations
 If you use SoMoBench in your research, we would appreciate a citation to the appropriate paper(s):
 
-For general use of SoMoBench you can read/cite our .. paper (bibtex).
-For application of SoMoBench you can read/cite our Science Data papers (bibtex; free access).
