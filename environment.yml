@@ -1,0 +1,10 @@
+name: somobench
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - cartopy
+  - pandas
+  - matplotlib
+prefix: /Users/sungmino/miniconda3/envs/somobench
