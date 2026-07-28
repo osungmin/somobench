@@ -19,17 +19,42 @@ This repository provides code associated with the SoMoBench dataset and paper.
 The current release includes:
 
 - scripts to reproduce the figures presented in the SoMoBench paper
-- scripts to run the illustrative baseline modelling experiments
+- example scripts demonstrating the construction of the soil moisture target dataset using sample data; reproducing the full workflow requires station data downloaded directly from ISMN (https://ismn.earth/)
 
-Additional processing scripts for constructing the target dataset from raw input data may be added in future updates.
+## Repository structure
 
 ```text
 somobench/
-├── paper/
-│   ├── reproduce_figures.py
-│   └── run_baselines.py
+├── figures/
+│   ├── figdata/
+│   ├── fig02.py
+│   ├── fig03.py
+│   ├── fig04.py
+│   ├── fig05.py
+│   ├── fig06.py
+│   └── fig07.py
+├── src/
+│   ├── demo_data/
+│   │   ├── era5/
+│   │   │   └── layer1_41.875_-111.625.dat
+│   │   ├── meta/
+│   │   │   └── ismn_point_metadata_demo.lst
+│   │   └── raw_extracted/
+│   │   │   ├── DEMONET_ST001_sD05-sD05_SENSOR1.dat
+│   │   │   └── DEMONET_ST002_sD05-sD05_SENSOR1.dat
+│   ├── 01_prepare_soilm_daily.py
+│   └── 02_build_targets.py
 ├── README.md
-└── requirements.txt
+└── environment.yml
+```
+
+## Installation
+
+Create the Conda environment from environment.yml, and then activate the environment somobench:
+
+```bash
+conda env create -f environment.yml
+source activate somobench
 ```
 
 ## Data and figure reproduction
@@ -67,4 +92,5 @@ figures/
 
 ## Citations
 If you use SoMoBench in your research, we would appreciate a citation to the appropriate paper(s):
+ SoMoBench: a quasi-global benchmark dataset for data-driven soil moisture modelling with in situ-derived targets
 
