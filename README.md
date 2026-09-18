@@ -1,96 +1,30 @@
+# 산업 에너지 AI 관제센터 v3
 
+한국 특강용 데모입니다. 합성 공정데이터를 사용하지만, API 키를 연결하면 LLM 응답·RAG 검색 후 종합·Agentic AI Tool Calling은 실제로 실행됩니다.
 
+## 주요 기능
+- 강의 모드: 기존 EMS → LLM → RAG → Agentic AI를 단계별 ON/OFF
+- 실제 운영 모드: 대시보드 + 공정 설비도 + AI Copilot
+- 공정 설비도 이상 설비 점멸
+- 한글 사내 가상문서 5종을 대상으로 실제 검색
+- OpenAI Responses API 기반 실제 LLM 호출
+- Agent가 DATA TOOL / RAG TOOL / CALCULATOR를 실제 함수 호출로 선택
 
-# SoMoBench
+## Streamlit 업데이트
+기존 GitHub 저장소에 이 폴더 안의 파일을 같은 위치로 업로드하고 Commit 합니다. 기존 Streamlit 앱은 같은 URL에서 자동 재배포됩니다.
 
-SoMoBench is a benchmark dataset for data-driven soil moisture modelling with targets derived from in situ observations.
+## OpenAI API 연결
+Streamlit 앱의 Settings → Secrets에 다음을 입력합니다.
 
-## What is SoMoBench?
-
-SoMoBench provides daily soil moisture target time series and collocated meteorological forcing data for machine-learning applications. The dataset is designed to support reproducible benchmarking and model intercomparison for soil moisture modelling.
-
-The target data are derived from in situ soil moisture observations from the International Soil Moisture Network (ISMN) and the CEMADEN network in Brazil. The observations are harmonized to a common 0.25° grid and provided for three nominal soil layers: 0–10, 10–30, and 30–50 cm. The dataset also includes daily ERA5 meteorological forcing time series and grid-cell metadata.
-
-
-## About this repository
-
-This repository provides code associated with the SoMoBench dataset and paper.
-
-The current release includes:
-
-- scripts to reproduce the figures presented in the SoMoBench paper
-- example scripts demonstrating the construction of the soil moisture target dataset using sample data; reproducing the full workflow requires station data downloaded directly from ISMN (https://ismn.earth/)
-
-## Repository structure
-
-```text
-somobench/
-├── figures/
-│   ├── figdata/
-│   ├── fig02.py
-│   ├── fig03.py
-│   ├── fig04.py
-│   ├── fig05.py
-│   ├── fig06.py
-│   └── fig07.py
-├── src/
-│   ├── demo_data/
-│   │   ├── era5/
-│   │   │   └── layer1_41.875_-111.625.dat
-│   │   ├── meta/
-│   │   │   └── ismn_point_metadata_demo.lst
-│   │   └── raw_extracted/
-│   │   │   ├── DEMONET_ST001_sD05-sD05_SENSOR1.dat
-│   │   │   └── DEMONET_ST002_sD05-sD05_SENSOR1.dat
-│   ├── 01_prepare_soilm_daily.py
-│   └── 02_build_targets.py
-├── README.md
-└── environment.yml
+```toml
+OPENAI_API_KEY = "발급받은_API_키"
+OPENAI_MODEL = "gpt-5.6-luna"
 ```
 
-## Installation
+API 키는 GitHub에 올리지 마세요. `.streamlit/secrets.toml.example`은 형식 예시일 뿐 실제 키를 넣는 파일이 아닙니다.
 
-Create the Conda environment from environment.yml, and then activate the environment somobench:
+## RAG 문서
+`documents/` 폴더에 모두 한글로 작성된 가상 사내자료가 들어 있습니다. 실제 현장 적용 시 이 자리에 승인된 설비 매뉴얼, SOP, 정비이력, 에너지진단 보고서 등을 연결합니다.
 
-```bash
-conda env create -f environment.yml
-source activate somobench
-```
-
-## Data and figure reproduction
-
-The SoMoBench benchmark dataset is distributed separately from this repository.
-
-The latest release (`SoMoBench_v1.0.zip`) can be downloaded from **Zenodo**:
-
-> **Zenodo:** *(URL to be added)*
-
-### Reproducing the figures
-
-1. Download `SoMoBench_v1.0.zip` from Zenodo.
-2. Place the ZIP file in the same directory as the figure script (e.g., `fig02.py`).
-3. Extract the archive:
-
-```bash
-unzip SoMoBench_v1.0.zip
-```
-
-4. Run the desired figure script:
-
-```bash
-python fig02.py
-```
-
-Figures 2–4 and Figure 7 use only the released SoMoBench dataset contained in `SoMoBench_v1.0`.
-
-Figures 5 and 6 additionally require the precomputed figure data included in this repository under:
-
-```text
-figures/
-└── figdata/
-```
-
-## Citations
-If you use SoMoBench in your research, we would appreciate a citation to the appropriate paper(s):
- SoMoBench: a quasi-global benchmark dataset for data-driven soil moisture modelling with in situ-derived targets
-
+## 주의
+절감액 계산에는 교육용 가정값이 사용됩니다. 실제 제어·정비 의사결정에는 현장 검증과 안전·보안 검토가 필요합니다.
